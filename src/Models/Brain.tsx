@@ -36,7 +36,13 @@ type GLTFResult = GLTF & {
   // animations: GLTFAction[]
 }
 
-export function Model(props: React.JSX.IntrinsicElements['group']) {
+type ModelProps = React.JSX.IntrinsicElements['group'] & {
+  setIsSelected?: React.Dispatch<React.SetStateAction<string | null>>;
+  info?: (key: string) => React.ReactNode;
+}
+
+export function Model(props: ModelProps) {
+  const { setIsSelected, info, ...groupProps } = props;
   const { nodes, materials } = useGLTF('/brain.glb') as unknown as GLTFResult
   const initialState: Record<string, boolean> = {
     materials2: false,
@@ -52,16 +58,13 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
     materials10: false
   }
   const [hovered, setHovered] = useState(initialState)
-
-  // const brainMaterial = new THREE.MeshPhongMaterial({
-  //   color: hovered ? 0xffffff : 0x00ff00
-  // })
-
   function getMaterial(hovered: boolean, base: THREE.Material) {
     return hovered
       ? new THREE.MeshPhongMaterial({ color: 0xffffff }) // hover rengi
       : base
   }
+
+
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} >
@@ -80,6 +83,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             e.stopPropagation()
             setHovered(prev => ({ ...prev, materials2: false }))
           }}
+          onClick={() => setIsSelected && setIsSelected('materials2')}
         />
         <mesh
           castShadow
@@ -96,6 +100,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             e.stopPropagation()
             setHovered(prev => ({ ...prev, materials2_1: false }))
           }}
+          onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_1') }}
         />
         <group position={[-1.085, 1.649, 0]}>
           <mesh
@@ -106,6 +111,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             material={getMaterial(hovered.materials2_2, materials.material)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_2: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_2: false })) }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_2') }}
           />
           <lineSegments
             geometry={nodes.Material2_3.geometry}
@@ -113,6 +119,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             material={getMaterial(hovered.materials2_3, materials.material)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_3: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_3: false })) }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_3') }}
           />
         </group>
         <mesh
@@ -124,6 +131,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_4: true })) }}
           onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_4: false })) }}
+          onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_4') }}
         />
         <mesh
           castShadow
@@ -134,6 +142,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_5: true })) }}
           onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_5: false })) }}
+          onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_5') }}
         />
         <group position={[-1.085, 1.649, 0]}>
           <mesh
@@ -144,6 +153,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             material={getMaterial(hovered.materials2_6, materials.material)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_6: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_6: false })) }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_6') }}
           />
           <lineSegments
             geometry={nodes.Material2_7.geometry}
@@ -151,6 +161,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             material={getMaterial(hovered.materials2_7, materials.edge_color808080255)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_7: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_7: false })) }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_7') }}
           />
         </group>
         <mesh
@@ -162,6 +173,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_8: true })) }}
           onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_8: false })) }}
+          onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_8') }}
         />
         <group position={[-1.085, 1.649, 0]}>
           <mesh
@@ -172,6 +184,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             material={getMaterial(hovered.materials2_9, materials.Color_A06)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_9: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_9: false })) }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_9') }}
           />
           <lineSegments
             geometry={nodes.Material2_10.geometry}
@@ -179,6 +192,7 @@ export function Model(props: React.JSX.IntrinsicElements['group']) {
             material={getMaterial(hovered.materials2_10, materials.edge_color808080255)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials10: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials10: false })) }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('materials2_10') }}
           />
         </group>
       </group>
