@@ -10,7 +10,7 @@ Title: Brain
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 // import brain from '../assets/brain.glb'
 
 type GLTFResult = GLTF & {
@@ -60,19 +60,17 @@ export function Model(props: ModelProps) {
   const [hovered, setHovered] = useState(initialState)
   function getMaterial(hovered: boolean, base: THREE.Material) {
     return hovered
-      ? new THREE.MeshPhongMaterial({ color: 0xffffff }) // hover rengi
+      ? new THREE.MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
       : base
   }
 
-
-  return (
-    <group {...props} dispose={null}>
+  const memoMesh = useMemo(() => (
+    <group {...groupProps} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} >
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Material2.geometry}
-          // material={materials.material}
           material={getMaterial(hovered.materials2, materials.material)}
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => {
@@ -89,7 +87,6 @@ export function Model(props: ModelProps) {
           castShadow
           receiveShadow
           geometry={nodes.Material2_1.geometry}
-          // material={materials.material}
           material={getMaterial(hovered.materials2_1, materials.material)}
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => {
@@ -107,7 +104,6 @@ export function Model(props: ModelProps) {
             castShadow
             receiveShadow
             geometry={nodes.Material2_2.geometry}
-            // material={brainMaterial}
             material={getMaterial(hovered.materials2_2, materials.material)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_2: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_2: false })) }}
@@ -115,7 +111,6 @@ export function Model(props: ModelProps) {
           />
           <lineSegments
             geometry={nodes.Material2_3.geometry}
-            // material={brainMaterial}
             material={getMaterial(hovered.materials2_3, materials.material)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_3: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_3: false })) }}
@@ -126,7 +121,6 @@ export function Model(props: ModelProps) {
           castShadow
           receiveShadow
           geometry={nodes.Material2_4.geometry}
-          // material={materials.material}
           material={getMaterial(hovered.materials2_4, materials.material)}
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_4: true })) }}
@@ -137,7 +131,6 @@ export function Model(props: ModelProps) {
           castShadow
           receiveShadow
           geometry={nodes.Material2_5.geometry}
-          // material={materials.material}
           material={getMaterial(hovered.materials2_5, materials.material)}
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_5: true })) }}
@@ -149,7 +142,6 @@ export function Model(props: ModelProps) {
             castShadow
             receiveShadow
             geometry={nodes.Material2_6.geometry}
-            // material={materials.material}
             material={getMaterial(hovered.materials2_6, materials.material)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_6: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_6: false })) }}
@@ -157,7 +149,6 @@ export function Model(props: ModelProps) {
           />
           <lineSegments
             geometry={nodes.Material2_7.geometry}
-            // material={materials.edge_color808080255}
             material={getMaterial(hovered.materials2_7, materials.edge_color808080255)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_7: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_7: false })) }}
@@ -168,7 +159,6 @@ export function Model(props: ModelProps) {
           castShadow
           receiveShadow
           geometry={nodes.Material2_8.geometry}
-          // material={materials.material}
           material={getMaterial(hovered.materials2_8, materials.material)}
           position={[-1.085, 1.649, 0]}
           onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_8: true })) }}
@@ -180,7 +170,6 @@ export function Model(props: ModelProps) {
             castShadow
             receiveShadow
             geometry={nodes.Material2_9.geometry}
-            // material={materials.Color_A06}
             material={getMaterial(hovered.materials2_9, materials.Color_A06)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_9: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials2_9: false })) }}
@@ -188,7 +177,6 @@ export function Model(props: ModelProps) {
           />
           <lineSegments
             geometry={nodes.Material2_10.geometry}
-            // material={materials.edge_color20400255}
             material={getMaterial(hovered.materials2_10, materials.edge_color808080255)}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials10: true })) }}
             onPointerLeave={(e) => { e.stopPropagation(); setHovered(prev => ({ ...prev, materials10: false })) }}
@@ -197,7 +185,9 @@ export function Model(props: ModelProps) {
         </group>
       </group>
     </group>
-  )
+  ), [hovered, setIsSelected, nodes, materials, groupProps]);
+
+  return memoMesh;
 }
 
 useGLTF.preload('/brain.glb')
