@@ -181,7 +181,7 @@ export default function BrainModels() {
         }
     }
     return (
-        <div className="flex flex-col gap-5 items-center h-screen relative">
+        <div className="relative">
 
             <div className={isSelected === null ? `hidden` : `info-card`}>
                 {isSelected && (
@@ -190,7 +190,7 @@ export default function BrainModels() {
                     </div>
                 )}
             </div>
-            <Canvas className="w-[400px] h-[600px] ">
+            <Canvas className="h-full">
                 <ambientLight intensity={0.3} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
                 <OrbitControls />

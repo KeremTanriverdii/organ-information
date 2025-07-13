@@ -4,8 +4,7 @@ import BrainModels from './components/HeroModels/BrainModels'
 function App() {
 
   return (
-    <div className='w-screen'>
-
+    <div className='h-[97.8vh]'>
       <BrainModels />
     </div>
   )
