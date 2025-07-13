@@ -4,6 +4,6 @@
 
 @layer components {
     .info-card {
-        @apply absolute left-2 top-1/10 bg-gray-600 p-5 rounded-2xl xl:w-[420px] z-10
+        @apply absolute left-2 top-1/10 p-5 rounded-2xl xl:w-[420px] z-10
     }
 }
