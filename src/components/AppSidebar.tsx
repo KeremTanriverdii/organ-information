@@ -1,7 +1,8 @@
-import { Brain, Home, OrigamiIcon, Search, Settings } from "lucide-react"
+import { Brain, Home, Moon, OrigamiIcon, Search, Settings, Sun } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar"
-import { Switch } from "./ui/switch"
 import { useTheme } from "./Context/theme-provider"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { Button } from "./ui/button"
 
 
 const items = [
@@ -41,14 +42,10 @@ export default function AppSidebar() {
                 <SidebarGroup />
                 <SidebarGroupLabel className="flex justify-between">
                     <span>Application</span>
-                    <Switch
-                        checked={theme === 'dark'}
-                        onCheckedChange={() => setTheme(theme === "dark" ? 'light' : 'dark')}
-                    ></Switch>
+
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-                        <p>2</p>
                         {items.map((item) => (
                             <SidebarMenuItem key={item.title}>
                                 <SidebarMenuButton asChild>
@@ -62,7 +59,28 @@ export default function AppSidebar() {
                     </SidebarMenu>
                 </SidebarGroupContent>
                 <SidebarGroup />
-                <SidebarFooter />
+                <SidebarFooter >
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                                <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                                <span className="sr-only">Toggle theme</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="center">
+                            <DropdownMenuItem onClick={() => setTheme("light")}>
+                                Light
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setTheme("dark")}>
+                                Dark
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setTheme("system")}>
+                                System
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </SidebarFooter>
             </SidebarContent>
         </Sidebar>
     )

@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')!).render(
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <SidebarProvider>
         <AppSidebar />
-        <main>
+        <main className='w-screen'>
           <SidebarTrigger />
           <App />
         </main>
