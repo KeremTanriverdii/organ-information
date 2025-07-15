@@ -1,9 +1,18 @@
 import BrainModels from './components/HeroModels/BrainModels'
+import IntestineModels from './components/HeroModels/IntestineModels';
+import LungsModels from './components/HeroModels/LungsModels';
+import StomachModels from './components/HeroModels/StomachModels';
 
 function App({ select }: { select: string | null }) {
   switch (select) {
     case 'Brain':
       return <BrainModels />;
+    case 'Lungs & Heart':
+      return <LungsModels />;
+    case 'Stomach':
+      return <StomachModels />;
+    case 'Intestine':
+      return <IntestineModels />;
     // Add more cases for other selections if needed
     default: null
   }

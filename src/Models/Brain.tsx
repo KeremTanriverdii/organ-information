@@ -36,7 +36,7 @@ type GLTFResult = GLTF & {
   // animations: GLTFAction[]
 }
 
-type ModelProps = React.JSX.IntrinsicElements['group'] & {
+export type ModelProps = React.JSX.IntrinsicElements['group'] & {
   setIsSelected?: React.Dispatch<React.SetStateAction<string | null>>;
   info?: (key: string) => React.ReactNode;
 }

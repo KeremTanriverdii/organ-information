@@ -17,17 +17,17 @@ const items = [
         icon: Brain,
     },
     {
-        title: "Liver",
+        title: "Lungs & Heart",
         url: "#",
         icon: OrigamiIcon,
     },
     {
-        title: "Search",
+        title: "Stomach",
         url: "#",
         icon: Search,
     },
     {
-        title: "Settings",
+        title: "Intestine",
         url: "#",
         icon: Settings,
     },
