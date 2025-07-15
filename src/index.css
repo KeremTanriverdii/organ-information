@@ -15,7 +15,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.6456 0.1513 251.38);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -46,16 +46,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --button-bg: oklch(19.4% 0 0)
 }
 
 a {
   font-weight: 500;
   color: oklch(0.9755 0.0045 258.31);
   text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -69,22 +66,6 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #fff;
-  color: #000;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
 
 button:focus,
 button:focus-visible {
@@ -102,7 +83,7 @@ button:focus-visible {
   }
 
   button {
-    background-color: #f9f9f9;
+    background-color: var(--button-bg);
   }
 }
 
@@ -142,6 +123,7 @@ button:focus-visible {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --button-bg: var(--button-bg)
 }
 
 .dark {
@@ -176,7 +158,9 @@ button:focus-visible {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --button-bg: oklch(0.985 0 0)
 }
+
 
 @layer base {
   * {

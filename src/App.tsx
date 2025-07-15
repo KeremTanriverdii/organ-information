@@ -1,11 +1,23 @@
-import { useEffect, useState } from 'react'
 import BrainModels from './components/HeroModels/BrainModels'
 
-function App() {
-
+function App({ select }: { select: string | null }) {
+  switch (select) {
+    case 'Brain':
+      return <BrainModels />;
+    // Add more cases for other selections if needed
+    default: null
+  }
   return (
-    <div className='h-[97.8vh]'>
-      <BrainModels />
+    <div className=''>
+      {select === null ? (
+        <div className='flex items-center justify-center h-screen'>
+          <h1 className='text-2xl font-bold'>Select a model from the sidebar</h1>
+        </div>
+      ) : (
+        <div className='flex items-center justify-center h-screen'>
+          <h1 className='text-2xl font-bold'>Model: {select}</h1>
+        </div>
+      )}
     </div>
   )
 }

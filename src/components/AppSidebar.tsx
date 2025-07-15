@@ -8,7 +8,7 @@ import { Button } from "./ui/button"
 const items = [
     {
         title: "Home",
-        url: "#",
+        url: "/",
         icon: Home,
     },
     {
@@ -33,26 +33,27 @@ const items = [
     },
 ]
 
-export default function AppSidebar() {
-    const { theme, setTheme } = useTheme();
+export default function AppSidebar({ onSelect }: { onSelect?: (item: string) => void }) {
+    const { setTheme } = useTheme();
     return (
-        <Sidebar>
+        <Sidebar >
             <SidebarHeader />
-            <SidebarContent>
+            <SidebarContent className="p-2">
                 <SidebarGroup />
                 <SidebarGroupLabel className="flex justify-between">
                     <span>Application</span>
-
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {items.map((item) => (
                             <SidebarMenuItem key={item.title}>
                                 <SidebarMenuButton asChild>
-                                    <a href={item.url}>
-                                        <item.icon />
-                                        <span>{item.title}</span>
-                                    </a>
+                                    <Button type="button" onClick={() => onSelect?.(item.title)} className="w-full justify-start">
+                                        <div className="flex items-center gap-2">
+                                            <item.icon />
+                                            <span>{item.title}</span>
+                                        </div>
+                                    </Button>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         ))}
@@ -62,7 +63,7 @@ export default function AppSidebar() {
                 <SidebarFooter >
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon">
+                            <Button variant="outline" size="icon" id="buttonTheme">
                                 <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
                                 <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
                                 <span className="sr-only">Toggle theme</span>

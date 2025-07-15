@@ -60,7 +60,7 @@ export function Model(props: ModelProps) {
   const [hovered, setHovered] = useState(initialState)
   function getMaterial(hovered: boolean, base: THREE.Material) {
     return hovered
-      ? new THREE.MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
+      ? new THREE.MeshPhongMaterial({ color: 0x60C1DC }) // hover rengi
       : base
   }
 
