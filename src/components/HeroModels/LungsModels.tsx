@@ -1,4 +1,3 @@
-import { Model } from "@/Models/Brain";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
@@ -56,7 +55,7 @@ export default function LungsModels() {
                     <Lungs setIsSelected={setIsSelected} info={getInfo} />
                 </group>
 
-                {/* <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} /> */}
+                <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} />
 
             </Canvas>
 

@@ -15,11 +15,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-<<<<<<< HEAD
   --background: oklch(0.6456 0.1513 251.38);
-=======
-  --background: oklch(1 0 0);
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -50,10 +46,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-<<<<<<< HEAD
-  --button-bg: oklch(19.4% 0 0)
-=======
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 }
 
 a {
@@ -62,13 +54,10 @@ a {
   text-decoration: inherit;
 }
 
-<<<<<<< HEAD
-=======
 a:hover {
   color: #535bf2;
 }
 
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 body {
   margin: 0;
   padding: 0;
@@ -80,8 +69,6 @@ h1 {
   line-height: 1.1;
 }
 
-<<<<<<< HEAD
-=======
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -98,7 +85,6 @@ button {
 button:hover {
   border-color: #646cff;
 }
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 
 button:focus,
 button:focus-visible {
@@ -116,11 +102,8 @@ button:focus-visible {
   }
 
   button {
-<<<<<<< HEAD
     background-color: var(--button-bg);
-=======
     background-color: #f9f9f9;
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
   }
 }
 
@@ -160,10 +143,7 @@ button:focus-visible {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-<<<<<<< HEAD
-  --button-bg: var(--button-bg)
-=======
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
+  --button-bg: var(--button-bg);
 }
 
 .dark {
@@ -198,15 +178,10 @@ button:focus-visible {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-<<<<<<< HEAD
   --button-bg: oklch(0.985 0 0)
 }
 
 
-=======
-}
-
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 @layer base {
   * {
     @apply border-border outline-ring/50;

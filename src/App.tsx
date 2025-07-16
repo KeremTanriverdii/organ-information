@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import BrainModels from './components/HeroModels/BrainModels'
 import IntestineModels from './components/HeroModels/IntestineModels';
 import LungsModels from './components/HeroModels/LungsModels';
@@ -28,18 +27,7 @@ function App({ select }: { select: string | null }) {
           <h1 className='text-2xl font-bold'>Model: {select}</h1>
         </div>
       )}
-=======
-import { useEffect, useState } from 'react'
-import BrainModels from './components/HeroModels/BrainModels'
-
-function App() {
-
-  return (
-    <div className='h-[97.8vh]'>
-      <BrainModels />
->>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
     </div>
-  )
+  );
 }
-
 export default App
