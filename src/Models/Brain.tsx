@@ -10,7 +10,7 @@ Title: Brain
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 // import brain from '../assets/brain.glb'
 
 type GLTFResult = GLTF & {
@@ -64,8 +64,17 @@ export function Model(props: ModelProps) {
       : base
   }
 
+  const groupRef = useRef<THREE.Group>(null);
+  useEffect(() => {
+    const box = new THREE.Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new THREE.Vector3());
+    box.getCenter(center);
+    groupRef.current!.position.sub(center);
+  }, []);
+
+
   const memoMesh = useMemo(() => (
-    <group {...groupProps} dispose={null}>
+    <group ref={groupRef} {...groupProps} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} >
         <mesh
           castShadow

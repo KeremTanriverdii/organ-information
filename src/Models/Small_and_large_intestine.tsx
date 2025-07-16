@@ -11,6 +11,7 @@ import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ModelProps } from './Brain'
+import { useEffect, useRef } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,8 +28,16 @@ type GLTFResult = GLTF & {
 
 export function Intestine(props: ModelProps) {
   const { nodes, materials } = useGLTF('/small_and_large_intestine.glb') as unknown as GLTFResult
+
+  const groupRef = useRef<THREE.Group>(null);
+  useEffect(() => {
+    const box = new THREE.Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new THREE.Vector3());
+    box.getCenter(center);
+    groupRef.current!.position.sub(center);
+  }, []);
   return (
-    <group {...props} dispose={null}>
+    <group ref={groupRef} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.037}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[15.286, 3.827, -1.997]} scale={0.1}>

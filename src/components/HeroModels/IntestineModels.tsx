@@ -5,10 +5,11 @@ import '../../App.css'
 import { Card, CardAction, CardDescription, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 import { Intestine } from "@/Models/Small_and_large_intestine";
+import { useMediaQuery } from "react-responsive";
 
 export default function IntestineModels() {
     const [isSelected, setIsSelected] = useState<string | null>(null);
-
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     function getInfo(key: string) {
         switch (key) {
             case 'materials2_10':
@@ -30,6 +31,7 @@ export default function IntestineModels() {
                 null
         }
     }
+
     return (
         <div className="relative h-full">
 
@@ -40,12 +42,12 @@ export default function IntestineModels() {
                     </div>
                 )}
             </div>
-            <Canvas>
+            <Canvas camera={{ position: [0, 0, 0], fov: 20 }} shadows dpr={1}>
                 <ambientLight intensity={1} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
                 <OrbitControls
-                    minDistance={12}
-                    maxDistance={13}
+                    minDistance={20}
+                    maxDistance={25}
                     target={[0, 0, 0]}
                     maxPolarAngle={Math.PI / 2}
                     minPolarAngle={Math.PI / 2}
@@ -53,7 +55,7 @@ export default function IntestineModels() {
 
                 </OrbitControls>
 
-                <group position={[0, 0, 0]}>
+                <group position={[0, 0, 0]} scale={isMobile ? 1.2 : 2} >
                     <Intestine setIsSelected={setIsSelected} info={getInfo} />
                 </group>
 

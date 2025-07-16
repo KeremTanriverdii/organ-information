@@ -5,10 +5,12 @@ import { useState } from "react";
 import '../../App.css'
 import { Card, CardAction, CardDescription, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
+import { useMediaQuery } from "react-responsive";
+import { CircleX, LucideEyeClosed } from "lucide-react";
 
 export default function BrainModels() {
     const [isSelected, setIsSelected] = useState<string | null>(null);
-
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     function getInfo(key: string) {
         switch (key) {
             // case 'materials2':
@@ -29,7 +31,12 @@ export default function BrainModels() {
             case 'materials2_1':
                 return (
                     <Card>
-                        <CardHeader>Temporal Lobe</CardHeader>
+                        <CardHeader className="flex justify-between">
+                            Temporal Lobe
+                            <CardAction>
+                                <Button onClick={() => setIsSelected(null)}><CircleX /></Button>
+                            </CardAction>
+                        </CardHeader>
                         <CardDescription>Located beneath the parietal lobe, near the temples and ears, the temporal lobe is closely associated with hearing, memory, and emotion processing.</CardDescription>
                         <ul>
                             <h4>Functions</h4>
@@ -39,15 +46,16 @@ export default function BrainModels() {
                             <li><strong>Emotional Processing:</strong>Controlling and regulating intense emotions like fear and anger (parts of the limbic system are within the temporal lobe).</li>
                             <li><strong>Olfactory Perception:</strong>Contains centers related to the sense of smell.</li>
                         </ul>
-                        <CardAction>
-                            <Button onClick={() => setIsSelected(null)}>Back</Button>
-                        </CardAction>
                     </Card>
                 )
             case 'materials2_2':
                 return (
                     <Card>
-                        <CardHeader>Parietal Lobe</CardHeader>
+                        <CardHeader className="flex justify-between">Parietal Lobe
+                            <CardAction>
+                                <Button onClick={() => setIsSelected(null)}><CircleX /></Button>
+                            </CardAction>
+                        </CardHeader>
                         <CardDescription>Situated behind the frontal lobe, this lobe is central to processing sensory information.</CardDescription>
                         <ul>
                             <h4>Functions</h4>
@@ -57,9 +65,6 @@ export default function BrainModels() {
                             <li><strong>Integration of Sensory Information:</strong>Combining different sensory inputs to form a complete perception.</li>
                             <li><strong>Language and Mathematics:</strong>Involved in certain linguistic and mathematical functions.</li>
                         </ul>
-                        <CardAction>
-                            <Button onClick={() => setIsSelected(null)}>Back</Button>
-                        </CardAction>
                     </Card>
                 )
             // case 'materials2_3':
@@ -80,7 +85,12 @@ export default function BrainModels() {
             case 'materials2_4':
                 return (
                     <Card>
-                        <CardHeader>Brainstem</CardHeader>
+                        <CardHeader className="flex justify-between">
+                            Brainstem
+                            <CardAction>
+                                <Button onClick={() => setIsSelected(null)}><CircleX /></Button>
+                            </CardAction>
+                        </CardHeader>
                         <CardDescription>Acts as a bridge between the brain and the spinal cord. It's responsible for vital bodily functions.</CardDescription>
                         <ul className="flex flex-col gap-2">
                             <h4>Functions</h4>
@@ -101,15 +111,17 @@ export default function BrainModels() {
                                 Transmitting nerve signals between the brain and spinal cord..
                             </li>
                         </ul>
-                        <CardAction>
-                            <Button onClick={() => setIsSelected(null)}>Back</Button>
-                        </CardAction>
                     </Card>
                 )
             case 'materials2_5':
                 return (
                     <Card>
-                        <CardHeader>Occipital Lobe</CardHeader>
+                        <CardHeader className="flex justify-between">
+                            Occipital Lobe
+                            <CardAction>
+                                <Button onClick={() => setIsSelected(null)}><CircleX /></Button>
+                            </CardAction>
+                        </CardHeader>
                         <CardDescription>Found at the very back of the brain, this lobe is primarily responsible for visual processing.</CardDescription>
                         <ul>
                             <h4>Functions</h4>
@@ -118,15 +130,17 @@ export default function BrainModels() {
                             <li><strong>Visual Memory:</strong>Recognizing and recalling seen objects and faces.</li>
                             <li><strong>Spatial Reasoning:</strong>Using visual information to understand spatial relationships.</li>
                         </ul>
-                        <CardAction>
-                            <Button onClick={() => setIsSelected(null)}>Back</Button>
-                        </CardAction>
                     </Card>
                 )
             case 'materials2_6':
                 return (
                     <Card>
-                        <CardHeader>Frontal Lobe</CardHeader>
+                        <CardHeader className="flex justify-between">
+                            Frontal Lobe
+                            <CardAction>
+                                <Button onClick={() => setIsSelected(null)}><CircleX /></Button>
+                            </CardAction>
+                        </CardHeader>
                         <CardDescription>Located at the front of the brain, behind the forehead, the frontal lobe is often considered the "command center" of the brain. It's crucial for human personality, decision-making, and complex cognitive processes.</CardDescription>
                         <ul className="flex flex-col gap-2">
                             <h4>Functions</h4>
@@ -138,9 +152,6 @@ export default function BrainModels() {
                             <li><strong>Language and Memory:</strong>
                                 Critical for language comprehension, verbal memory, and speech. It's also involved in the formation and storage of long-term memories.</li>
                         </ul>
-                        <CardAction>
-                            <Button onClick={() => setIsSelected(null)}>Back</Button>
-                        </CardAction>
                     </Card>
 
                 )
@@ -177,7 +188,12 @@ export default function BrainModels() {
             case 'materials2_9':
                 return (
                     <Card>
-                        <CardHeader>Cerebellum</CardHeader>
+                        <CardHeader className="flex justify-between">
+                            Cerebellum
+                            <CardAction>
+                                <Button onClick={() => setIsSelected(null)}><CircleX /></Button>
+                            </CardAction>
+                        </CardHeader>
                         <CardDescription>Located at the back of the brain, beneath the occipital and temporal lobes.</CardDescription>
                         <ul>
                             <h4>Functions</h4>
@@ -186,9 +202,6 @@ export default function BrainModels() {
                             <li><strong>Muscle Tone:</strong>Regulating the tension in muscles.</li>
                             <li><strong>Emotion and Cognitive Processes:</strong>Also thought to play a role in emotional regulation and cognitive functions.</li>
                         </ul>
-                        <CardAction>
-                            <Button onClick={() => setIsSelected(null)}>Back</Button>
-                        </CardAction>
                     </Card>
                 )
             // case 'materials2_10':
@@ -220,7 +233,7 @@ export default function BrainModels() {
                     </div>
                 )}
             </div>
-            <Canvas>
+            <Canvas camera={{ position: [0, 0, 0], fov: 70 }} shadows dpr={1}>
                 <ambientLight intensity={1} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
                 <OrbitControls
@@ -233,7 +246,7 @@ export default function BrainModels() {
 
                 </OrbitControls>
 
-                <group position={[0, 0, 0]}>
+                <group position={[0, 0, 0]} scale={isMobile ? 0.5 : 1} >
                     <Model setIsSelected={setIsSelected} info={getInfo} />
                 </group>
 

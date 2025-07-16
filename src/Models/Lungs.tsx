@@ -8,9 +8,10 @@ Title: Healthy heart and lungs
 */
 
 import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
+import { Gltf, useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ModelProps } from './Brain'
+import { useEffect, useRef } from 'react'
 type GLTFResult = GLTF & {
   nodes: {
     normaal25_normaal25_0: THREE.Mesh
@@ -33,17 +34,61 @@ type GLTFResult = GLTF & {
 
 export function Lungs(props: ModelProps) {
   const { nodes, materials } = useGLTF('/lungs.glb') as unknown as GLTFResult
+  const groupRef = useRef<THREE.Group>(null);
+  useEffect(() => {
+    const box = new THREE.Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new THREE.Vector3());
+    box.getCenter(center);
+    groupRef.current!.position.sub(center);
+  }, []);
+
+
   return (
-    <group {...props} dispose={null}>
+    <group ref={groupRef} {...props} dispose={null}>
       <group position={[-2.066, -26.478, 49.443]} rotation={[-2.848, 0.013, 0.042]} scale={0.007}>
         <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes.normaal25_normaal25_0.geometry} material={materials.normaal25} />
-          <mesh geometry={nodes.normaal6_normaal6_0.geometry} material={materials.normaal6} />
-          <mesh geometry={nodes.normaal6_normaal6_0_1.geometry} material={materials.normaal6} />
-          <mesh geometry={nodes.normaal6_normaal6_0_2.geometry} material={materials.normaal6} />
-          <mesh geometry={nodes.normaal5_normaal5_0.geometry} material={materials.normaal5} />
-          <mesh geometry={nodes.normaal4_normaal4_0.geometry} material={materials.normaal4} />
-          <mesh geometry={nodes.linkerlong3_linkerlong3_0.geometry} material={materials.linkerlong3} />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.normaal25_normaal25_0.geometry}
+            material={materials.normaal25}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.normaal6_normaal6_0.geometry}
+            material={materials.normaal6}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.normaal6_normaal6_0_1.geometry}
+            material={materials.normaal6}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.normaal6_normaal6_0_2.geometry}
+            material={materials.normaal6}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.normaal5_normaal5_0.geometry}
+            material={materials.normaal5}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.normaal4_normaal4_0.geometry}
+            material={materials.normaal4}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.linkerlong3_linkerlong3_0.geometry}
+            material={materials.linkerlong3}
+          />
         </group>
       </group>
     </group>

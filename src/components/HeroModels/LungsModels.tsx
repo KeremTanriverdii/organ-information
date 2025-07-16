@@ -1,14 +1,17 @@
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import '../../App.css'
 import { Card, CardAction, CardDescription, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 import { Lungs } from "@/Models/Lungs";
+import { useMediaQuery } from "react-responsive";
+import * as THREE from 'three';
 
 export default function LungsModels() {
     const [isSelected, setIsSelected] = useState<string | null>(null);
 
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     function getInfo(key: string) {
         switch (key) {
             case 'materials2_10':
@@ -30,35 +33,45 @@ export default function LungsModels() {
                 null
         }
     }
+
+
     return (
         <div className="relative h-full">
+            {/* İsteğe bağlı bilgi kartı */}
+            {isSelected && (
+                <div className="info-card">
+                    {getInfo(isSelected)}
+                </div>
+            )}
 
-            {/* <div className={isSelected === null ? `hidden` : `info-card`}>
-                {isSelected && (
-                    <div>
-                        {getInfo(isSelected)}
-                    </div>
-                )}
-            </div> */}
-            <Canvas camera={{ position: [0, 0, 0], fov: 60 }} shadows>
-                <ambientLight intensity={3} />
-                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
+            <Canvas
+                camera={{ position: [0, 0, 500], fov: 25 }}
+                shadows
+                dpr={1}
+            >
                 <OrbitControls
+                    minDistance={300}
+                    maxDistance={600}
                     target={[0, 0, 0]}
-                    minDistance={0.01}
-                // maxPolarAngle={Math.PI / 2}
-                // minPolarAngle={Math.PI / 2}
-                >
-                </OrbitControls>
+                    minPolarAngle={Math.PI / 2}
+                    maxPolarAngle={Math.PI / 2}
+                />
 
-                <group >
+                <group scale={isMobile ? 25 : 55}>
                     <Lungs setIsSelected={setIsSelected} info={getInfo} />
                 </group>
 
-                <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} />
+                {/* Geliştirici için yardımcı eksen çizgileri */}
+                {/* <axesHelper args={[100]} /> */}
 
+                <Environment
+                    preset="dawn"
+                    background
+                    resolution={64}
+                    backgroundIntensity={0.3}
+                    backgroundBlurriness={0.010}
+                />
             </Canvas>
-
         </div>
     )
 }
