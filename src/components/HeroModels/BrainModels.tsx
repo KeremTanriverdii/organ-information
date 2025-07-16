@@ -11,6 +11,7 @@ export default function BrainModels() {
 
     function getInfo(key: string) {
         switch (key) {
+<<<<<<< HEAD
             // case 'materials2':
             //     return (
             //         <Card>
@@ -38,16 +39,46 @@ export default function BrainModels() {
                             <li><strong>Language Comprehension:</strong>Understanding spoken and written language (Wernicke's area is found in this lobe).</li>
                             <li><strong>Emotional Processing:</strong>Controlling and regulating intense emotions like fear and anger (parts of the limbic system are within the temporal lobe).</li>
                             <li><strong>Olfactory Perception:</strong>Contains centers related to the sense of smell.</li>
+=======
+            case 'materials2':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
                         </ul>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
                         </CardAction>
                     </Card>
+                )
+            case 'materials2_1':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
+                        </ul>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+                    </Card>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
                 )
             case 'materials2_2':
                 return (
                     <Card>
+<<<<<<< HEAD
                         <CardHeader>Parietal Lobe</CardHeader>
                         <CardDescription>Situated behind the frontal lobe, this lobe is central to processing sensory information.</CardDescription>
                         <ul>
@@ -57,12 +88,36 @@ export default function BrainModels() {
                             <li><strong>Navigation:</strong>Sense of direction and recognizing places in the environment.</li>
                             <li><strong>Integration of Sensory Information:</strong>Combining different sensory inputs to form a complete perception.</li>
                             <li><strong>Language and Mathematics:</strong>Involved in certain linguistic and mathematical functions.</li>
+=======
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
                         </ul>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
                         </CardAction>
                     </Card>
                 )
+            case 'materials2_3':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
+                        </ul>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+                    </Card>
+                )
+<<<<<<< HEAD
             // case 'materials2_3':
             //     return (
             //         <Card>
@@ -101,6 +156,17 @@ export default function BrainModels() {
                                 <strong>Sensory and Motor Information Relay:</strong>
                                 Transmitting nerve signals between the brain and spinal cord..
                             </li>
+=======
+            case 'materials2_4':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
                         </ul>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
@@ -110,6 +176,7 @@ export default function BrainModels() {
             case 'materials2_5':
                 return (
                     <Card>
+<<<<<<< HEAD
                         <CardHeader>Occipital Lobe</CardHeader>
                         <CardDescription>Found at the very back of the brain, this lobe is primarily responsible for visual processing.</CardDescription>
                         <ul>
@@ -118,6 +185,14 @@ export default function BrainModels() {
                             <li><strong>Image Processing:</strong>Analyzing visual characteristics such as color, form, motion, and depth perception.</li>
                             <li><strong>Visual Memory:</strong>Recognizing and recalling seen objects and faces.</li>
                             <li><strong>Spatial Reasoning:</strong>Using visual information to understand spatial relationships.</li>
+=======
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
                         </ul>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
@@ -127,6 +202,7 @@ export default function BrainModels() {
             case 'materials2_6':
                 return (
                     <Card>
+<<<<<<< HEAD
                         <CardHeader>Frontal Lobe</CardHeader>
                         <CardDescription>Located at the front of the brain, behind the forehead, the frontal lobe is often considered the "command center" of the brain. It's crucial for human personality, decision-making, and complex cognitive processes.</CardDescription>
                         <ul className="flex flex-col gap-2">
@@ -138,11 +214,50 @@ export default function BrainModels() {
                             <li><strong>Voluntary Movements:</strong> Coordinating conscious muscle movements like walking or reaching. The motor cortex is located here.</li>
                             <li><strong>Language and Memory:</strong>
                                 Critical for language comprehension, verbal memory, and speech. It's also involved in the formation and storage of long-term memories.</li>
+=======
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
                         </ul>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
                         </CardAction>
                     </Card>
+                )
+            case 'materials2_7':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+                        </ul>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+                    </Card>
+                )
+            case 'materials2_8':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
+                        </ul>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+                    </Card>
+<<<<<<< HEAD
 
                 )
             // case 'materials2_7':
@@ -186,12 +301,40 @@ export default function BrainModels() {
                             <li><strong>Motor Learning:</strong>Acquiring and refining new motor skills (e.g., playing an instrument, sports).</li>
                             <li><strong>Muscle Tone:</strong>Regulating the tension in muscles.</li>
                             <li><strong>Emotion and Cognitive Processes:</strong>Also thought to play a role in emotional regulation and cognitive functions.</li>
+=======
+                )
+            case 'materials2_9':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
                         </ul>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
                         </CardAction>
                     </Card>
                 )
+            case 'materials2_10':
+                return (
+                    <Card>
+                        <CardHeader>{isSelected}</CardHeader>
+                        <CardDescription>is detailed for brain of parts</CardDescription>
+                        <ul>
+                            <li>lorem1</li>
+                            <li>Lorem, ipsum.</li>
+                            <li>Lorem, ipsum dolor.</li>
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
+                        </ul>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+                    </Card>
+                )
+<<<<<<< HEAD
             // case 'materials2_10':
             //     return (
             //         <Card>
@@ -213,6 +356,14 @@ export default function BrainModels() {
     }
     return (
         <div className="relative h-full">
+=======
+            default:
+                return <p>Bu bölge için hakkında bilgi yok</p>
+        }
+    }
+    return (
+        <div className="relative">
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 
             <div className={isSelected === null ? `hidden` : `info-card`}>
                 {isSelected && (
@@ -221,6 +372,7 @@ export default function BrainModels() {
                     </div>
                 )}
             </div>
+<<<<<<< HEAD
             <Canvas>
                 <ambientLight intensity={1} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
@@ -239,6 +391,18 @@ export default function BrainModels() {
                 </group>
 
                 <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} />
+=======
+            <Canvas className="h-full">
+                <ambientLight intensity={0.3} />
+                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
+                <OrbitControls />
+
+                <mesh>
+                    <Model setIsSelected={setIsSelected} info={getInfo} />
+                </mesh>
+
+                {/* <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} /> */}
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 
             </Canvas>
 

@@ -36,7 +36,11 @@ type GLTFResult = GLTF & {
   // animations: GLTFAction[]
 }
 
+<<<<<<< HEAD
 export type ModelProps = React.JSX.IntrinsicElements['group'] & {
+=======
+type ModelProps = React.JSX.IntrinsicElements['group'] & {
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
   setIsSelected?: React.Dispatch<React.SetStateAction<string | null>>;
   info?: (key: string) => React.ReactNode;
 }
@@ -60,7 +64,11 @@ export function Model(props: ModelProps) {
   const [hovered, setHovered] = useState(initialState)
   function getMaterial(hovered: boolean, base: THREE.Material) {
     return hovered
+<<<<<<< HEAD
       ? new THREE.MeshPhongMaterial({ color: 0x60C1DC }) // hover rengi
+=======
+      ? new THREE.MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
       : base
   }
 

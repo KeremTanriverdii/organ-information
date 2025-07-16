@@ -4,7 +4,12 @@
 
 @layer components {
     .info-card {
+<<<<<<< HEAD
         @apply absolute right-2 -top-3 p-5 rounded-2xl xl:w-[420px] z-10 overflow-y-auto
     }
 
+=======
+        @apply absolute left-2 top-1/10 p-5 rounded-2xl xl:w-[420px] z-10
+    }
+>>>>>>> 1815cc33d88c9d18a5d772735bcbd841de523fa8
 }
