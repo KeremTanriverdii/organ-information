@@ -8,10 +8,10 @@ Title: Healthy heart and lungs
 */
 
 import * as THREE from 'three'
-import { Gltf, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ModelProps } from './Brain'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 type GLTFResult = GLTF & {
   nodes: {
     normaal25_normaal25_0: THREE.Mesh
@@ -33,8 +33,10 @@ type GLTFResult = GLTF & {
 }
 
 export function Lungs(props: ModelProps) {
+  const { setIsSelected, info, ...groupProps } = props
   const { nodes, materials } = useGLTF('/lungs.glb') as unknown as GLTFResult
   const groupRef = useRef<THREE.Group>(null);
+
   useEffect(() => {
     const box = new THREE.Box3().setFromObject(groupRef.current!);
     const center = box.getCenter(new THREE.Vector3());
@@ -42,7 +44,22 @@ export function Lungs(props: ModelProps) {
     groupRef.current!.position.sub(center);
   }, []);
 
+  const initialState: Record<string, boolean> = {
+    normaal25_normaal25_0: false,
+    normaal6_normaal6_0: false,
+    normaal6_normaal6_0_1: false,
+    normaal6_normaal6_0_2: false,
+    normaal5_normaal5_0: false,
+    normaal4_normaal4_0: false,
+    materialinkerlong3_linkerlong3_0ls2_6: false,
+  }
+  const [hovered, setHovered] = useState(initialState)
 
+  function getMaterial(hovered: boolean, base: THREE.Material) {
+    return hovered
+      ? new THREE.MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
+      : base
+  }
   return (
     <group ref={groupRef} {...props} dispose={null}>
       <group position={[-2.066, -26.478, 49.443]} rotation={[-2.848, 0.013, 0.042]} scale={0.007}>
@@ -51,43 +68,106 @@ export function Lungs(props: ModelProps) {
             castShadow
             receiveShadow
             geometry={nodes.normaal25_normaal25_0.geometry}
-            material={materials.normaal25}
+            material={getMaterial(hovered.normaal25_normaal25_0, materials.normaal25)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal25_normaal25_0: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal25_normaal25_0: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal25_normaal25_0') }}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.normaal6_normaal6_0.geometry}
-            material={materials.normaal6}
+            material={getMaterial(hovered.normaal6_normaal6_0, materials.normaal6)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal6_normaal6_0: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal6_normaal6_0: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal6_normaal6_0') }}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.normaal6_normaal6_0_1.geometry}
-            material={materials.normaal6}
+            material={getMaterial(hovered.normaal6_normaal6_0_1, materials.normaal6)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal6_normaal6_0_1: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal6_normaal6_0_1: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal6_normaal6_0_1') }}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.normaal6_normaal6_0_2.geometry}
-            material={materials.normaal6}
+            material={getMaterial(hovered.normaal6_normaal6_0_2, materials.normaal6)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal6_normaal6_0_2: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal6_normaal6_0_2: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal6_normaal6_0_2') }}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.normaal5_normaal5_0.geometry}
-            material={materials.normaal5}
+            material={getMaterial(hovered.normaal5_normaal5_0, materials.normaal5)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal5_normaal5_0: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal5_normaal5_0: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal5_normaal5_0') }}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.normaal4_normaal4_0.geometry}
-            material={materials.normaal4}
+            material={getMaterial(hovered.normaal4_normaal4_0, materials.normaal4)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal4_normaal4_0: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, normaal4_normaal4_0: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal4_normaal4_0') }}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.linkerlong3_linkerlong3_0.geometry}
-            material={materials.linkerlong3}
+            material={getMaterial(hovered.materialinkerlong3_linkerlong3_0ls2_6, materials.linkerlong3)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, materialinkerlong3_linkerlong3_0ls2_6: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, materialinkerlong3_linkerlong3_0ls2_6: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('linkerlong3_linkerlong3_0') }}
           />
         </group>
       </group>
