@@ -52,7 +52,6 @@ export default function IntestineModels() {
                     maxPolarAngle={Math.PI / 2}
                     minPolarAngle={Math.PI / 2}
                 >
-
                 </OrbitControls>
 
                 <group position={[0, 0, 0]} scale={isMobile ? 1.2 : 2} >

@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/small-and-large-intestine-8a1ca8e3ca224c
 Title: Small and large intestine
 */
 
-import * as THREE from 'three'
+import { Mesh, MeshStandardMaterial, Group, Vector3, Box3, } from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ModelProps } from './Brain'
@@ -15,13 +15,13 @@ import { useEffect, useRef } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Tjocktarm_Default_Material_0: THREE.Mesh
-    Tjocktarm_Default_Material_0_1: THREE.Mesh
-    Tunntarm_Default_Material_0: THREE.Mesh
+    Tjocktarm_Default_Material_0: Mesh
+    Tjocktarm_Default_Material_0_1: Mesh
+    Tunntarm_Default_Material_0: Mesh
   }
   materials: {
-    Default_Material: THREE.MeshStandardMaterial
-    Default_Material_0: THREE.MeshStandardMaterial
+    Default_Material: MeshStandardMaterial
+    Default_Material_0: MeshStandardMaterial
   }
   // animations: GLTFAction[]
 }
@@ -29,10 +29,10 @@ type GLTFResult = GLTF & {
 export function Intestine(props: ModelProps) {
   const { nodes, materials } = useGLTF('/small_and_large_intestine.glb') as unknown as GLTFResult
 
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<Group>(null);
   useEffect(() => {
-    const box = new THREE.Box3().setFromObject(groupRef.current!);
-    const center = box.getCenter(new THREE.Vector3());
+    const box = new Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new Vector3());
     box.getCenter(center);
     groupRef.current!.position.sub(center);
   }, []);

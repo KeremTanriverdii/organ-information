@@ -6,7 +6,7 @@ import '../../App.css'
 import { Card, CardAction, CardDescription, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 import { useMediaQuery } from "react-responsive";
-import { CircleX, LucideEyeClosed } from "lucide-react";
+import { CircleX } from "lucide-react";
 
 export default function BrainModels() {
     const [isSelected, setIsSelected] = useState<string | null>(null);

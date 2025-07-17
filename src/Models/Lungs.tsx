@@ -7,27 +7,27 @@ Source: https://sketchfab.com/3d-models/healthy-heart-and-lungs-5c62cd4d4ba04243
 Title: Healthy heart and lungs
 */
 
-import * as THREE from 'three'
+import { Mesh, MeshStandardMaterial, Group, Box3, Vector3, MeshPhongMaterial, Material } from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ModelProps } from './Brain'
 import { useEffect, useRef, useState } from 'react'
 type GLTFResult = GLTF & {
   nodes: {
-    normaal25_normaal25_0: THREE.Mesh
-    normaal6_normaal6_0: THREE.Mesh
-    normaal6_normaal6_0_1: THREE.Mesh
-    normaal6_normaal6_0_2: THREE.Mesh
-    normaal5_normaal5_0: THREE.Mesh
-    normaal4_normaal4_0: THREE.Mesh
-    linkerlong3_linkerlong3_0: THREE.Mesh
+    normaal25_normaal25_0: Mesh
+    normaal6_normaal6_0: Mesh
+    normaal6_normaal6_0_1: Mesh
+    normaal6_normaal6_0_2: Mesh
+    normaal5_normaal5_0: Mesh
+    normaal4_normaal4_0: Mesh
+    linkerlong3_linkerlong3_0: Mesh
   }
   materials: {
-    normaal25: THREE.MeshStandardMaterial
-    normaal6: THREE.MeshStandardMaterial
-    normaal5: THREE.MeshStandardMaterial
-    normaal4: THREE.MeshStandardMaterial
-    linkerlong3: THREE.MeshStandardMaterial
+    normaal25: MeshStandardMaterial
+    normaal6: MeshStandardMaterial
+    normaal5: MeshStandardMaterial
+    normaal4: MeshStandardMaterial
+    linkerlong3: MeshStandardMaterial
   }
   // animations: GLTFAction[]
 }
@@ -35,11 +35,11 @@ type GLTFResult = GLTF & {
 export function Lungs(props: ModelProps) {
   const { setIsSelected, info, ...groupProps } = props
   const { nodes, materials } = useGLTF('/lungs.glb') as unknown as GLTFResult
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<Group>(null);
 
   useEffect(() => {
-    const box = new THREE.Box3().setFromObject(groupRef.current!);
-    const center = box.getCenter(new THREE.Vector3());
+    const box = new Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new Vector3());
     box.getCenter(center);
     groupRef.current!.position.sub(center);
   }, []);
@@ -55,13 +55,13 @@ export function Lungs(props: ModelProps) {
   }
   const [hovered, setHovered] = useState(initialState)
 
-  function getMaterial(hovered: boolean, base: THREE.Material) {
+  function getMaterial(hovered: boolean, base: Material) {
     return hovered
-      ? new THREE.MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
+      ? new MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
       : base
   }
   return (
-    <group ref={groupRef} {...props} dispose={null}>
+    <group ref={groupRef} {...groupProps} dispose={null}>
       <group position={[-2.066, -26.478, 49.443]} rotation={[-2.848, 0.013, 0.042]} scale={0.007}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <mesh

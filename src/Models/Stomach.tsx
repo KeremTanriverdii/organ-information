@@ -7,160 +7,199 @@ Source: https://sketchfab.com/3d-models/oesophageal-stomach-disease-fa692a82f723
 Title: Oesophageal & Stomach Disease
 */
 
-import * as THREE from 'three'
+import { Mesh, MeshStandardMaterial, Vector3, Box3, Group } from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-import type { ModelProps } from './Brain'
-import { useEffect, useRef } from 'react'
+import { getMaterial, type ModelProps } from './Brain'
+import { useEffect, useRef, useState } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_3: THREE.Mesh
-    Object_4: THREE.Mesh
-    Object_5: THREE.Mesh
-    Object_6: THREE.Mesh
-    Object_7: THREE.Mesh
-    Object_8: THREE.Mesh
-    Object_9: THREE.Mesh
-    Object_10: THREE.Mesh
-    Object_11: THREE.Mesh
-    Object_12: THREE.Mesh
-    Object_13: THREE.Mesh
-    Object_14: THREE.Mesh
-    Object_15: THREE.Mesh
-    Object_16: THREE.Mesh
-    Object_17: THREE.Mesh
-    Object_18: THREE.Mesh
-    Object_19: THREE.Mesh
-    Object_20: THREE.Mesh
-    Object_21: THREE.Mesh
-    Object_22: THREE.Mesh
-    Object_23: THREE.Mesh
-    Object_24: THREE.Mesh
-    Object_25: THREE.Mesh
-    Object_26: THREE.Mesh
-    Object_27: THREE.Mesh
-    Object_28: THREE.Mesh
-    Object_29: THREE.Mesh
-    Object_30: THREE.Mesh
-    Object_31: THREE.Mesh
-    Object_32: THREE.Mesh
-    Object_33: THREE.Mesh
-    Object_34: THREE.Mesh
-    Object_35: THREE.Mesh
-    Object_36: THREE.Mesh
-    Object_37: THREE.Mesh
-    Object_38: THREE.Mesh
-    Object_39: THREE.Mesh
-    Object_40: THREE.Mesh
-    Object_41: THREE.Mesh
-    Object_42: THREE.Mesh
-    Object_44: THREE.Mesh
-    Object_45: THREE.Mesh
-    Object_46: THREE.Mesh
-    Object_47: THREE.Mesh
-    Object_48: THREE.Mesh
-    Object_49: THREE.Mesh
-    Object_50: THREE.Mesh
-    Object_51: THREE.Mesh
-    Object_52: THREE.Mesh
-    Object_53: THREE.Mesh
-    Object_54: THREE.Mesh
-    Object_55: THREE.Mesh
-    Object_56: THREE.Mesh
-    Object_57: THREE.Mesh
-    Object_58: THREE.Mesh
-    Object_59: THREE.Mesh
-    Object_60: THREE.Mesh
-    Object_61: THREE.Mesh
-    Object_62: THREE.Mesh
-    Object_63: THREE.Mesh
-    Object_64: THREE.Mesh
+    Object_3: Mesh
+    Object_4: Mesh
+    Object_5: Mesh
+    Object_6: Mesh
+    Object_7: Mesh
+    Object_8: Mesh
+    Object_9: Mesh
+    Object_10: Mesh
+    Object_11: Mesh
+    Object_12: Mesh
+    Object_13: Mesh
+    Object_14: Mesh
+    Object_15: Mesh
+    Object_16: Mesh
+    Object_17: Mesh
+    Object_18: Mesh
+    Object_19: Mesh
+    Object_20: Mesh
+    Object_21: Mesh
+    Object_22: Mesh
+    Object_23: Mesh
+    Object_24: Mesh
+    Object_25: Mesh
+    Object_26: Mesh
+    Object_27: Mesh
+    Object_28: Mesh
+    Object_29: Mesh
+    Object_30: Mesh
+    Object_31: Mesh
+    Object_32: Mesh
+    Object_33: Mesh
+    Object_34: Mesh
+    Object_35: Mesh
+    Object_36: Mesh
+    Object_37: Mesh
+    Object_38: Mesh
+    Object_39: Mesh
+    Object_40: Mesh
+    Object_41: Mesh
+    Object_42: Mesh
+    Object_44: Mesh
+    Object_45: Mesh
+    Object_46: Mesh
+    Object_47: Mesh
+    Object_48: Mesh
+    Object_49: Mesh
+    Object_50: Mesh
+    Object_51: Mesh
+    Object_52: Mesh
+    Object_53: Mesh
+    Object_54: Mesh
+    Object_55: Mesh
+    Object_56: Mesh
+    Object_57: Mesh
+    Object_58: Mesh
+    Object_59: Mesh
+    Object_60: Mesh
+    // Object_61: Mesh
+    Object_62: Mesh
+    Object_63: Mesh
+    Object_64: Mesh
   }
   materials: {
-    material_0: THREE.MeshStandardMaterial
-    defaultMat: THREE.MeshStandardMaterial
+    material_0: MeshStandardMaterial
+    defaultMat: MeshStandardMaterial
   }
   // animations: GLTFAction[]
 }
 
+
 export function Stomach(props: ModelProps) {
   const { nodes, materials } = useGLTF('/stomach.glb') as unknown as GLTFResult
-  const groupRef = useRef<THREE.Group>(null);
+  const { setIsSelected, info, ...groupProps } = props;
+  const meshKeys = Object.keys(nodes).slice(4).filter(key => key !== "sketchfab-dataprocessing1e13c4e3ca9e4617ab6b547bb2e60cc5preprocessSubTool-0-11412273OBJ"
+  ) // All mesh keys from GLTF
+  const groupRef = useRef<Group>(null);
+  const initialState = meshKeys.reduce((acc, key) => {
+    acc[key] = false
+    return acc
+  }, {} as Record<string, boolean>)
+  const [hovered, setHovered] = useState(initialState);
+  //  if maaterialsKeys greater than meshKeys Object.keys >= 44 value must defaultMat or if materialsKeys < meshKeys Object.keys < 44 value must be material_0
   useEffect(() => {
-    const box = new THREE.Box3().setFromObject(groupRef.current!);
-    const center = box.getCenter(new THREE.Vector3());
+    const box = new Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new Vector3());
     box.getCenter(center);
     groupRef.current!.position.sub(center);
   }, []);
 
+  const handlePointerOver = (key: string) => {
+    console.log("hovered", key)
+    setHovered((prev => ({ ...prev, [key]: true })));
+    props.setIsSelected?.(key);
+  }
+  const handlePointerOut = (key: string) => {
+    setHovered((prev => ({ ...prev, [key]: false })));
+    props.setIsSelected?.(null);
+  }
+  const handleClick = (key: string) => {
+    props.setIsSelected?.(key);
+  }
   return (
-    <group ref={groupRef} {...props} dispose={null}>
+    <group ref={groupRef} {...groupProps} dispose={null}>
       <group position={[-0.575, 1.046, 0.162]} rotation={[-1.877, 0.458, -0.031]} scale={0.297}>
-        <mesh geometry={nodes.Object_3.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_4.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_5.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_6.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_7.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_8.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_9.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_10.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_11.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_12.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_13.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_14.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_15.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_16.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_17.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_18.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_19.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_20.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_21.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_22.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_23.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_24.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_25.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_26.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_27.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_28.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_29.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_30.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_31.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_32.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_33.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_34.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_35.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_36.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_37.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_38.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_39.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_40.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_41.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_42.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_44.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_45.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_46.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_47.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_48.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_49.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_50.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_51.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_52.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_53.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_54.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_55.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_56.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_57.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_58.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_59.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_60.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_61.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_62.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_63.geometry} material={materials.defaultMat} />
-        <mesh geometry={nodes.Object_64.geometry} material={materials.defaultMat} />
+        {meshKeys.map((key) => (
+          <mesh
+            key={key}
+            geometry={nodes[key as keyof typeof nodes].geometry}
+            material={getMaterial(hovered[key], materials[key as keyof typeof materials] || materials.defaultMat)}
+            onPointerOver={(e) => { e.stopPropagation(); handlePointerOver(key) }}
+            onPointerOut={(e) => { { e.stopPropagation(); handlePointerOut(key) } }}
+            onClick={(e) => { e.stopPropagation(); handleClick(key) }}
+          />
+        ))}
       </group>
     </group>
+
   )
 }
 
 useGLTF.preload('/stomach.glb')
+
+
+//  <group {...props} dispose={null}>
+//       <group position={[-0.575, 1.046, 0.162]} rotation={[-1.877, 0.458, -0.031]} scale={0.297}>
+//         <mesh geometry={nodes.Object_3.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_4.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_5.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_6.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_7.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_8.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_9.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_10.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_11.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_12.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_13.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_14.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_15.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_16.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_17.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_18.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_19.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_20.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_21.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_22.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_23.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_24.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_25.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_26.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_27.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_28.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_29.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_30.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_31.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_32.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_33.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_34.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_35.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_36.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_37.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_38.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_39.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_40.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_41.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_42.geometry} material={materials.material_0} />
+//         <mesh geometry={nodes.Object_44.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_45.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_46.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_47.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_48.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_49.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_50.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_51.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_52.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_53.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_54.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_55.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_56.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_57.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_58.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_59.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_60.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_61.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_62.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_63.geometry} material={materials.defaultMat} />
+//         <mesh geometry={nodes.Object_64.geometry} material={materials.defaultMat} />
+//       </group>
+//     </group>

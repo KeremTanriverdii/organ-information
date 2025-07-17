@@ -1,7 +1,10 @@
-import BrainModels from './components/HeroModels/BrainModels'
-import IntestineModels from './components/HeroModels/IntestineModels';
-import LungsModels from './components/HeroModels/LungsModels';
-import StomachModels from './components/HeroModels/StomachModels';
+import React from 'react';
+
+
+const BrainModels = React.lazy(() => import('./components/HeroModels/BrainModels'))
+const IntestineModels = React.lazy(() => import('./components/HeroModels/IntestineModels'))
+const LungsModels = React.lazy(() => import('./components/HeroModels/LungsModels'))
+const StomachModels = React.lazy(() => import('./components/HeroModels/StomachModels'))
 
 function App({ select }: { select: string | null }) {
   switch (select) {

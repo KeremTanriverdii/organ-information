@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/brain-6ca0844a846b400695ff54553dc9bda4
 Title: Brain
 */
 
-import * as THREE from 'three'
+import { Mesh, MeshStandardMaterial, LineBasicMaterial, Material, MeshPhongMaterial, Group, Vector3, Box3 } from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -15,23 +15,23 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Material2: THREE.Mesh
-    Material2_1: THREE.Mesh
-    Material2_2: THREE.Mesh
-    Material2_3: THREE.Mesh
-    Material2_4: THREE.Mesh
-    Material2_5: THREE.Mesh
-    Material2_6: THREE.Mesh
-    Material2_7: THREE.Mesh
-    Material2_8: THREE.Mesh
-    Material2_9: THREE.Mesh
-    Material2_10: THREE.Mesh
+    Material2: Mesh
+    Material2_1: Mesh
+    Material2_2: Mesh
+    Material2_3: Mesh
+    Material2_4: Mesh
+    Material2_5: Mesh
+    Material2_6: Mesh
+    Material2_7: Mesh
+    Material2_8: Mesh
+    Material2_9: Mesh
+    Material2_10: Mesh
   }
   materials: {
-    material: THREE.MeshStandardMaterial
-    edge_color808080255: THREE.LineBasicMaterial
-    Color_A06: THREE.MeshStandardMaterial
-    edge_color20400255: THREE.LineBasicMaterial
+    material: MeshStandardMaterial
+    edge_color808080255: LineBasicMaterial
+    Color_A06: MeshStandardMaterial
+    edge_color20400255: LineBasicMaterial
   }
   // animations: GLTFAction[]
 }
@@ -39,6 +39,12 @@ type GLTFResult = GLTF & {
 export type ModelProps = React.JSX.IntrinsicElements['group'] & {
   setIsSelected?: React.Dispatch<React.SetStateAction<string | null>>;
   info?: (key: string) => React.ReactNode;
+}
+
+export function getMaterial(hovered: boolean, base: Material) {
+  return hovered
+    ? new MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
+    : base
 }
 
 export function Model(props: ModelProps) {
@@ -58,16 +64,12 @@ export function Model(props: ModelProps) {
     materials10: false
   }
   const [hovered, setHovered] = useState(initialState)
-  function getMaterial(hovered: boolean, base: THREE.Material) {
-    return hovered
-      ? new THREE.MeshPhongMaterial({ color: 0xE5BEED }) // hover rengi
-      : base
-  }
 
-  const groupRef = useRef<THREE.Group>(null);
+
+  const groupRef = useRef<Group>(null);
   useEffect(() => {
-    const box = new THREE.Box3().setFromObject(groupRef.current!);
-    const center = box.getCenter(new THREE.Vector3());
+    const box = new Box3().setFromObject(groupRef.current!);
+    const center = box.getCenter(new Vector3());
     box.getCenter(center);
     groupRef.current!.position.sub(center);
   }, []);
