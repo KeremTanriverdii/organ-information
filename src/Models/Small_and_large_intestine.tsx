@@ -10,8 +10,8 @@ Title: Small and large intestine
 import { Mesh, MeshStandardMaterial, Group, Vector3, Box3, } from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-import type { ModelProps } from './Brain'
-import { useEffect, useRef } from 'react'
+import { getMaterial, type ModelProps } from './Brain'
+import { useEffect, useRef, useState } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,8 +27,15 @@ type GLTFResult = GLTF & {
 }
 
 export function Intestine(props: ModelProps) {
+  const { setIsSelected, ...groupProps } = props
   const { nodes, materials } = useGLTF('/small_and_large_intestine.glb') as unknown as GLTFResult
+  const initialState: Record<string, boolean> = {
+    Tjocktarm_Default_Material_0_State: false,
+    Tjocktarm_Default_Material_0_1_State: false,
+    Tunntarm_Default_Material_0_State: false
 
+  }
+  const [hovered, setHovered] = useState(initialState);
   const groupRef = useRef<Group>(null);
   useEffect(() => {
     const box = new Box3().setFromObject(groupRef.current!);
@@ -37,14 +44,42 @@ export function Intestine(props: ModelProps) {
     groupRef.current!.position.sub(center);
   }, []);
   return (
-    <group ref={groupRef} {...props} dispose={null}>
+    <group ref={groupRef} {...groupProps} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.037}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[15.286, 3.827, -1.997]} scale={0.1}>
-            <mesh geometry={nodes.Tjocktarm_Default_Material_0.geometry} material={materials.Default_Material} />
-            <mesh geometry={nodes.Tjocktarm_Default_Material_0_1.geometry} material={materials.Default_Material} />
+            <mesh geometry={nodes.Tjocktarm_Default_Material_0.geometry} material={getMaterial(hovered.Tjocktarm_Default_Material_0_State, materials.Default_Material)}
+              onPointerOver={(e) => {
+                e.stopPropagation()
+                setHovered(prev => ({ ...prev, Tjocktarm_Default_Material_0_State: true }))
+              }}
+              onPointerLeave={(e) => {
+                e.stopPropagation(); setHovered(prev => ({ ...prev, Tjocktarm_Default_Material_0_State: false }))
+              }}
+              onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('Tjocktarm_Default_Material_0') }}
+            />
+            <mesh geometry={nodes.Tjocktarm_Default_Material_0_1.geometry} material={getMaterial(hovered.Tjocktarm_Default_Material_0_1, materials.Default_Material)}
+              onPointerOver={(e) => {
+                e.stopPropagation()
+                setHovered(prev => ({ ...prev, Tjocktarm_Default_Material_0_1: true }))
+              }}
+              onPointerLeave={(e) => {
+                e.stopPropagation(); setHovered(prev => ({ ...prev, Tjocktarm_Default_Material_0_1: false }))
+              }}
+              onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('Tjocktarm_Default_Material_0_1') }} />
           </group>
-          <mesh geometry={nodes.Tunntarm_Default_Material_0.geometry} material={materials.Default_Material_0} position={[14.166, 10.696, 1.169]} scale={0.1} />
+
+          <mesh geometry={nodes.Tunntarm_Default_Material_0.geometry}
+            material={getMaterial(hovered.Tunntarm_Default_Material_0_State, materials.Default_Material)}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              setHovered(prev => ({ ...prev, Tunntarm_Default_Material_0_State: true }))
+            }}
+            onPointerLeave={(e) => {
+              e.stopPropagation(); setHovered(prev => ({ ...prev, Tunntarm_Default_Material_0_State: false }))
+            }}
+            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('Tunntarm_Default_Material_0') }}
+            position={[14.166, 10.696, 1.169]} scale={0.1} />
         </group>
       </group>
     </group>

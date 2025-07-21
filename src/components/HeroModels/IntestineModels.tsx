@@ -12,16 +12,43 @@ export default function IntestineModels() {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     function getInfo(key: string) {
         switch (key) {
-            case 'materials2_10':
+            case 'Tjocktarm_Default_Material_0':
                 return (
                     <Card>
-                        <CardHeader>{isSelected}</CardHeader>
-                        <CardDescription>is detailed for brain of parts</CardDescription>
-                        <ul>
-                            <li>lorem1</li>
-                            <li>Lorem, ipsum.</li>
-                            <li>Lorem, ipsum dolor.</li>
-                        </ul>
+                        <CardHeader>Descending Colon</CardHeader>
+                        <CardDescription>After the left colic flexure, the colon moves inferiorly towards the pelvis – and is called the descending colon. It is retroperitoneal in the majority of individuals, but is located anteriorly to the left kidney, passing over its lateral border.</CardDescription>
+                        <div>
+                            <p>When the colon begins to turn medially, it becomes the <strong>sigmoid colon.</strong></p>
+                        </div>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+                    </Card>
+                )
+            case 'Tjocktarm_Default_Material_0_1':
+                return (
+                    <Card>
+                        <CardHeader>Ascending colon</CardHeader>
+                        <CardDescription>The colon begins as the ascending colon, a retroperitoneal structure which ascends superiorly from the cecum.</CardDescription>
+                        <div>
+                            <p>
+                                When it meets the right lobe of the liver, it turns 90 degrees to move horizontally. This turn is known as the right colic flexure (or hepatic flexure), and marks the start of the transverse colon
+                            </p>
+                        </div>
+                        <CardAction>
+                            <Button onClick={() => setIsSelected(null)}>Back</Button>
+                        </CardAction>
+
+                    </Card>
+                )
+            case 'Tunntarm_Default_Material_0':
+                return (
+                    <Card>
+                        <CardHeader>The Small Intestine</CardHeader>
+                        <CardDescription>The small intestine is an organ located within the gastrointestinal tract. It is approximately 6.5m in the average person and assists in the digestion and absorption of ingested food.</CardDescription>
+                        <div>
+                            <p>It extends from the pylorus of the stomach to the <strong>ileocaecal junction</strong>, where it meets the large intestine at the ileocaecal valve. Anatomically, the small bowel can be divided into three parts: the duodenum, jejunum, and ileum.</p>
+                        </div>
                         <CardAction>
                             <Button onClick={() => setIsSelected(null)}>Back</Button>
                         </CardAction>

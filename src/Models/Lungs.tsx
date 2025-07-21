@@ -33,7 +33,7 @@ type GLTFResult = GLTF & {
 }
 
 export function Lungs(props: ModelProps) {
-  const { setIsSelected, info, ...groupProps } = props
+  const { setIsSelected, ...groupProps } = props
   const { nodes, materials } = useGLTF('/lungs.glb') as unknown as GLTFResult
   const groupRef = useRef<Group>(null);
 
