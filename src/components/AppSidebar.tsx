@@ -22,11 +22,6 @@ const items = [
         icon: OrigamiIcon,
     },
     {
-        title: "Stomach",
-        url: "#",
-        icon: Search,
-    },
-    {
         title: "Intestine",
         url: "#",
         icon: Settings,
