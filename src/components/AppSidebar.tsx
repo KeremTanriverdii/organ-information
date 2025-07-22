@@ -1,4 +1,4 @@
-import { Brain, Home, Moon, OrigamiIcon, Search, Settings, Sun } from "lucide-react"
+import { Brain, Home, Moon, OrigamiIcon, Settings, Sun } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar"
 import { useTheme } from "./Context/theme-provider"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
@@ -20,11 +20,6 @@ const items = [
         title: "Lungs & Heart",
         url: "#",
         icon: OrigamiIcon,
-    },
-    {
-        title: "Stomach",
-        url: "#",
-        icon: Search,
     },
     {
         title: "Intestine",

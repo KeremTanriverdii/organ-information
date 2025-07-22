@@ -13,21 +13,6 @@ export default function BrainModels() {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     function getInfo(key: string) {
         switch (key) {
-            // case 'materials2':
-            //     return (
-            //         <Card>
-            //             <CardHeader>{isSelected}</CardHeader>
-            //             <CardDescription>is detailed for brain of parts</CardDescription>
-            //             <ul>
-            //                 <li>lorem1</li>
-            //                 <li>Lorem, ipsum.</li>
-            //                 <li>Lorem, ipsum dolor.</li>
-            //             </ul>
-            //             <CardAction>
-            //                 <Button onClick={() => setIsSelected(null)}>Back</Button>
-            //             </CardAction>
-            //         </Card>
-            //     )
             case 'materials2_1':
                 return (
                     <Card>
@@ -67,21 +52,6 @@ export default function BrainModels() {
                         </ul>
                     </Card>
                 )
-            // case 'materials2_3':
-            //     return (
-            //         <Card>
-            //             <CardHeader>{isSelected}</CardHeader>
-            //             <CardDescription>is detailed for brain of parts</CardDescription>
-            //             <ul>
-            //                 <li>lorem1</li>
-            //                 <li>Lorem, ipsum.</li>
-            //                 <li>Lorem, ipsum dolor.</li>
-            //             </ul>
-            //             <CardAction>
-            //                 <Button onClick={() => setIsSelected(null)}>Back</Button>
-            //             </CardAction>
-            //         </Card>
-            //     )
             case 'materials2_4':
                 return (
                     <Card>
@@ -155,36 +125,6 @@ export default function BrainModels() {
                     </Card>
 
                 )
-            // case 'materials2_7':
-            //     return (
-            //         <Card>
-            //             <CardHeader>{isSelected}</CardHeader>
-            //             <CardDescription>is detailed for brain of parts</CardDescription>
-            //             <ul>
-            //                 <li>lorem1</li>
-            //                 <li>Lorem, ipsum.</li>
-            //                 <li>Lorem, ipsum dolor.</li>
-            //             </ul>
-            //             <CardAction>
-            //                 <Button onClick={() => setIsSelected(null)}>Back</Button>
-            //             </CardAction>
-            //         </Card>
-            //     )
-            // case 'materials2_8':
-            //     return (
-            //         <Card>
-            //             <CardHeader>{isSelected}</CardHeader>
-            //             <CardDescription>is detailed for brain of parts</CardDescription>
-            //             <ul>
-            //                 <li>lorem1</li>
-            //                 <li>Lorem, ipsum.</li>
-            //                 <li>Lorem, ipsum dolor.</li>
-            //             </ul>
-            //             <CardAction>
-            //                 <Button onClick={() => setIsSelected(null)}>Back</Button>
-            //             </CardAction>
-            //         </Card>
-            //     )
             case 'materials2_9':
                 return (
                     <Card>
@@ -204,21 +144,6 @@ export default function BrainModels() {
                         </ul>
                     </Card>
                 )
-            // case 'materials2_10':
-            //     return (
-            //         <Card>
-            //             <CardHeader>{isSelected}</CardHeader>
-            //             <CardDescription>is detailed for brain of parts</CardDescription>
-            //             <ul>
-            //                 <li>lorem1</li>
-            //                 <li>Lorem, ipsum.</li>
-            //                 <li>Lorem, ipsum dolor.</li>
-            //             </ul>
-            //             <CardAction>
-            //                 <Button onClick={() => setIsSelected(null)}>Back</Button>
-            //             </CardAction>
-            //         </Card>
-            //     )
             default:
                 null
         }
