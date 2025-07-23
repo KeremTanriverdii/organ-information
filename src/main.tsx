@@ -9,7 +9,6 @@ import { ThemeProvider } from './components/Context/theme-provider.tsx'
 
 function RootApp() {
   const [selected, setSelected] = useState<string | null>(null);
-  console.log(selected)
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <SidebarProvider className=''>

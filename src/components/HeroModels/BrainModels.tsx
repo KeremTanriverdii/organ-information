@@ -1,5 +1,5 @@
 import { Model } from "@/Models/Brain";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, Html, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 import '../../App.css'
@@ -7,6 +7,7 @@ import { Card, CardAction, CardDescription, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 import { useMediaQuery } from "react-responsive";
 import { CircleX } from "lucide-react";
+
 
 export default function BrainModels() {
     const [isSelected, setIsSelected] = useState<string | null>(null);
@@ -23,9 +24,9 @@ export default function BrainModels() {
                             </CardAction>
                         </CardHeader>
                         <CardDescription>Located beneath the parietal lobe, near the temples and ears, the temporal lobe is closely associated with hearing, memory, and emotion processing.</CardDescription>
-                        <ul>
+                        <ul className="flex flex-col gap-2">
                             <h4>Functions</h4>
-                            <li>Auditory Processing:<strong></strong>Receiving and interpreting sounds.</li>
+                            <li ><strong className="me-2">Auditory Processing:</strong>Receiving and interpreting sounds.</li>
                             <li><strong>Memory:</strong>Organizing new information and forming both short-term and long-term memories. It has a strong connection with visual and auditory memory (e.g., facial recognition, remembering words).</li>
                             <li><strong>Language Comprehension:</strong>Understanding spoken and written language (Wernicke's area is found in this lobe).</li>
                             <li><strong>Emotional Processing:</strong>Controlling and regulating intense emotions like fear and anger (parts of the limbic system are within the temporal lobe).</li>
@@ -149,36 +150,34 @@ export default function BrainModels() {
         }
     }
     return (
-        <div className="relative h-full">
-
-            <div className={isSelected === null ? `hidden` : `info-card`}>
-                {isSelected && (
-                    <div>
-                        {getInfo(isSelected)}
-                    </div>
-                )}
-            </div>
-            <Canvas camera={{ position: [0, 0, 0], fov: 70 }} shadows dpr={1}>
+        <>
+            <Canvas camera={isMobile ? { position: [0, 0, 0], fov: 55 } : { position: [0, 0, 0], fov: 70 }} shadows dpr={1}>
                 <ambientLight intensity={1} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
                 <OrbitControls
-                    minDistance={12}
+                    minDistance={13}
                     maxDistance={13}
                     target={[0, 0, 0]}
                     maxPolarAngle={Math.PI / 2}
                     minPolarAngle={Math.PI / 2}
                 >
-
                 </OrbitControls>
 
-                <group position={[0, 0, 0]} scale={isMobile ? 0.5 : 1} >
+                <group position={isMobile ? [0, 8, 0] : [0, 7, 0]} scale={isMobile ? 0.5 : 1} >
                     <Model setIsSelected={setIsSelected} info={getInfo} />
                 </group>
+                <Html position={isMobile ? [0, -8, 0] : [0, -12.5, 0]} fullscreen className={isSelected === null ? `hidden` : `d-flex h-screen`}>
+                    <div>
+                        {isSelected && (
+                            <div style={{ color: 'white', width: '100%' }} className="flex flex-col justify-center items-center overflow-y-auto h-full">
+                                {getInfo(isSelected)}
+                            </div>
+                        )}
+                    </div>
+                </Html>
 
                 <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} />
-
             </Canvas>
-
-        </div>
+        </>
     )
 }

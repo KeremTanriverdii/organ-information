@@ -83,31 +83,13 @@ export function Lungs(props: ModelProps) {
             castShadow
             receiveShadow
             geometry={nodes.normaal6_normaal6_0.geometry}
-            material={getMaterial(hovered.normaal6_normaal6_0, materials.normaal6)}
-            onPointerOver={(e) => {
-              e.stopPropagation()
-              setHovered(prev => ({ ...prev, normaal6_normaal6_0: true }))
-            }}
-            onPointerLeave={(e) => {
-              e.stopPropagation()
-              setHovered(prev => ({ ...prev, normaal6_normaal6_0: false }))
-            }}
-            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal6_normaal6_0') }}
+            material={materials.normaal6}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.normaal6_normaal6_0_1.geometry}
-            material={getMaterial(hovered.normaal6_normaal6_0_1, materials.normaal6)}
-            onPointerOver={(e) => {
-              e.stopPropagation()
-              setHovered(prev => ({ ...prev, normaal6_normaal6_0_1: true }))
-            }}
-            onPointerLeave={(e) => {
-              e.stopPropagation()
-              setHovered(prev => ({ ...prev, normaal6_normaal6_0_1: false }))
-            }}
-            onClick={(e) => { e.stopPropagation(); setIsSelected && setIsSelected('normaal6_normaal6_0_1') }}
+            material={materials.normaal6}
           />
           <mesh
             castShadow

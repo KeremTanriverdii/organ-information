@@ -186,4 +186,10 @@ button:focus-visible {
   body {
     @apply bg-background text-foreground;
   }
+
+
+}
+
+strong {
+  @apply me-2
 }

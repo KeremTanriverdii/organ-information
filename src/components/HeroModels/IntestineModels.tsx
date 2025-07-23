@@ -1,4 +1,4 @@
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, Html, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 import '../../App.css'
@@ -60,20 +60,12 @@ export default function IntestineModels() {
     }
 
     return (
-        <div className="relative h-full">
-
-            <div className={isSelected === null ? `hidden` : `info-card`}>
-                {isSelected && (
-                    <div>
-                        {getInfo(isSelected)}
-                    </div>
-                )}
-            </div>
+        <>
             <Canvas camera={{ position: [0, 0, 0], fov: 20 }} shadows dpr={1}>
                 <ambientLight intensity={1} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
                 <OrbitControls
-                    minDistance={20}
+                    minDistance={25}
                     maxDistance={25}
                     target={[0, 0, 0]}
                     maxPolarAngle={Math.PI / 2}
@@ -81,14 +73,24 @@ export default function IntestineModels() {
                 >
                 </OrbitControls>
 
-                <group position={[0, 0, 0]} scale={isMobile ? 1.2 : 2} >
+                <group position={isMobile ? [-0.65, 1, 0] : [-1, 1.5, 0]} scale={isMobile ? 1.2 : 2} >
                     <Intestine setIsSelected={setIsSelected} info={getInfo} />
                 </group>
+
+                <Html position={isMobile ? [0, -4.23, 0] : [0, -5.6, 0]} fullscreen className={isSelected === null ? `hidden` : `d-flex h-screen`}>
+                    <div>
+                        {isSelected && (
+                            <div style={{ color: 'white', width: '100%' }} className="flex flex-col justify-center items-center overflow-y-auto h-full p-3">
+                                {getInfo(isSelected)}
+                            </div>
+                        )}
+                    </div>
+                </Html>
 
                 <Environment preset="dawn" background resolution={64} backgroundIntensity={0.3} backgroundBlurriness={0.010} />
 
             </Canvas>
 
-        </div>
+        </>
     )
 }
